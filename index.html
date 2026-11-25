@@ -288,5 +288,22 @@
 <div id="mensagem" class="mensagem" role="status" aria-live="polite"></div>
 <p>&copy; 2026 Criado por: Daniel Fealsi</p>
 
+  
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("./service-worker.js")
+      .then(registration => {
+        console.log("Fealsi-Programacao-Central-de-Resumos PWA ativado!", registration);
+      })
+      .catch(error => {
+        console.error("Erro no Service Worker:", error);
+      });
+  });
+}
+</script>
+
+
 </body>
 </html>
