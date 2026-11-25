@@ -1,13 +1,10 @@
+const CHAVE = "fealsi_programacao_resumos_v1";
 
-const CACHE_NAME = "fealsi-central-resumos-v2";
-
-const ARQUIVOS = [
-  "./",
-  "./index.html",
-  "./manifest.json",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png"
-];
+const form = document.getElementById("formLink");
+const lista = document.getElementById("listaLinks");
+const campoPesquisa = document.getElementById("pesquisa");
+const filtroCategoria = document.getElementById("filtroCategoria");
+const mensagem = document.getElementById("mensagem");
 
 let links = carregarLinks();
 let temporizadorMensagem;
