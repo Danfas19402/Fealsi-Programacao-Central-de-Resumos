@@ -1,4 +1,4 @@
-const CHAVE = "fealsi_programacao_resumos_v1";
+const CACHE_NAME = "fealsi-central-resumos-v2";
 
 const form = document.getElementById("formLink");
 const lista = document.getElementById("listaLinks");
