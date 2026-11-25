@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#07152f">
+
+  <meta name="description" content="Fealsi Programação — organize links e resumos dos seus estudos. Aprenda hoje. Programe amanhã.">
+
+  <title>Fealsi Programação | Central de Resumos</title>
+
+  <link rel="icon" type="image/png" href="assets/icone-fealsi.png">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
+
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<header class="topo">
+
+  <div class="topo-conteudo">
+
+    <a class="marca" href="#">
+
+      <img src="icon/icone-fealsi.png" alt="Fealsi Programação">
+
+      <span>
+        <strong>Fealsi</strong>
+        <b>Programação</b>
+        <small>Aprenda hoje. Programe amanhã.</small>
+      </span>
+
+    </a>
+
+    <button id="alternarTema" class="botao botao-tema" type="button">
+      ☀️ Tema claro
+    </button>
+
+  </div>
+
+</header>
+
+<main class="container">
+
+  <section class="boas-vindas">
+
+    <div>
+
+      <span class="etiqueta">
+        SUA BIBLIOTECA DE CONHECIMENTO
+      </span>
+
+      <h1>
+        Central de <span>Resumos</span>
+      </h1>
+
+      <p>
+        Guarde links, registre aprendizados e construa sua própria biblioteca de programação.
+      </p>
+
+    </div>
+
+    <div class="boas-vindas-icone">
+      &lt;/&gt;
+    </div>
+
+  </section>
+
+  <!-- FORMULÁRIO -->
+
+  <section class="painel formulario-painel">
+
+    <div class="titulo-secao">
+
+      <div>
+        <span class="numero-secao">01</span>
+        <h2 id="tituloFormulario">Adicionar conteúdo</h2>
+      </div>
+
+      <p>
+        Preencha os campos para salvar um novo resumo.
+      </p>
+
+    </div>
+
+    <form id="formLink">
+
+      <div class="grade-campos">
+
+        <label class="campo campo-titulo">
+
+          Título do conteúdo
+
+          <input
+            id="titulo"
+            name="titulo"
+            type="text"
+            placeholder="Ex.: Introdução ao JavaScript"
+            maxlength="120"
+            required
+          >
+
+        </label>
+
+        <label class="campo">
+
+          URL / Link do conteúdo
+
+          <input
+            id="url"
+            name="url"
+            type="url"
+            placeholder="https://www.youtube.com/..."
+            required
+          >
+
+        </label>
+
+        <label class="campo">
+
+          Categoria
+
+          <select id="categoria" name="categoria" required>
+
+            <option value="">Selecione uma categoria</option>
+
+            <option>HTML</option>
+            <option>CSS</option>
+            <option>JavaScript</option>
+            <option>Inteligência Artificial</option>
+            <option>Programação</option>
+            <option>Projetos e Jogos</option>
+            <option>Ferramentas</option>
+            <option>Tutoriais e Dicas</option>
+            <option>Outros</option>
+
+          </select>
+
+        </label>
+
+        <label class="campo campo-resumo">
+
+          Resumo do conteúdo
+
+          <textarea
+            id="resumo"
+            name="resumo"
+            rows="6"
+            placeholder="Escreva aqui os principais pontos, exemplos e aprendizados..."
+            required
+          ></textarea>
+
+        </label>
+
+      </div>
+
+      <div class="acoes-formulario">
+
+        <button class="botao botao-principal" type="submit">
+          <span>＋</span> Adicionar link
+        </button>
+
+        <button class="botao botao-secundario" type="reset">
+          Limpar campos
+        </button>
+
+      </div>
+
+    </form>
+
+  </section>
+
+  <!-- BIBLIOTECA -->
+
+  <section class="biblioteca">
+
+    <div class="titulo-secao titulo-biblioteca">
+
+      <div>
+        <span class="numero-secao">02</span>
+        <h2 id="tituloBiblioteca">Meus links e resumos</h2>
+      </div>
+
+      <p>
+        Seus conteúdos salvos em um só lugar.
+      </p>
+
+    </div>
+
+    <div class="barra-ferramentas">
+
+      <label class="busca">
+
+        <span>⌕</span>
+
+        <input
+          id="pesquisa"
+          type="search"
+          placeholder="Pesquisar título, categoria ou resumo..."
+          aria-label="Pesquisar conteúdos"
+        >
+
+      </label>
+
+      <select id="filtroCategoria" aria-label="Filtrar por categoria">
+
+        <option value="">Todas as categorias</option>
+
+        <option>HTML</option>
+        <option>CSS</option>
+        <option>JavaScript</option>
+        <option>Inteligência Artificial</option>
+        <option>Programação</option>
+        <option>Projetos e Jogos</option>
+        <option>Ferramentas</option>
+        <option>Tutoriais e Dicas</option>
+        <option>Outros</option>
+
+      </select>
+
+    </div>
+
+    <div class="resumo-contagem">
+
+      <span>
+        <strong id="totalLinks">0</strong>
+        conteúdo(s) salvo(s)
+      </span>
+
+      <span id="totalVisivel">
+        Exibindo 0
+      </span>
+
+    </div>
+
+    <div id="listaLinks" class="lista-links" aria-live="polite"></div>
+
+    <!-- BOTÕES DE EXPORTAÇÃO -->
+
+    <div class="acoes-exportacao">
+
+      <button class="botao botao-pdf" id="exportarPdf" type="button">
+        ⇩ Exportar PDF
+      </button>
+
+      <button class="botao botao-excel" id="exportarExcel" type="button">
+        ▦ Exportar Excel
+      </button>
+
+      <button class="botao botao-imprimir" id="imprimir" type="button">
+        ▤ Imprimir
+      </button>
+
+      <button class="botao botao-perigo" id="limparTudo" type="button">
+        ✕ Limpar tudo
+      </button>
+
+    </div>
+
+    <p class="aviso-local">
+      🔒 Seus registros ficam salvos neste navegador. Faça exportações de segurança regularmente.
+    </p>
+
+  </section>
+
+  <footer>
+
+    <strong>&copy Fealsi Programação</strong>
+
+    <span>— Aprenda hoje. Programe amanhã.</span>
+
+  </footer>
+
+</main>
+
+<div id="mensagem" class="mensagem" role="status" aria-live="polite"></div>
+<p>&copy; 2026 Criado por: Daniel Fealsi</p>
+
+</body>
+</html>
