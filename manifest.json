@@ -3,7 +3,7 @@
   "id": "./",
   "name": "Fealsi Programação - Central de Resumos",
   "short_name": "Central de Resumos",
-  "description": "Organize seus estudos, crie resumos e construa sua biblioteca de programação.",
+  "description": "Organize seus estudos, crie resumos e exporte seus conteúdos.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
