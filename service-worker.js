@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "linkpocket-v1";
+const CACHE_NAME = "Fealsi-Programacao-Central-de-Resumos";
 
 const ARQUIVOS = [
   "./",
