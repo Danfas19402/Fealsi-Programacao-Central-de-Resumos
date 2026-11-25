@@ -1,0 +1,10 @@
+Central-de-Resumos/
+│
+├── index.html
+├── style.css
+├── script.js
+├── manifest.json
+│
+└── icons/
+    ├── icon-192.png
+    └── icon-512.png
