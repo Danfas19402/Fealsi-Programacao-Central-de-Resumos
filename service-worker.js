@@ -1,9 +1,12 @@
 
-const CACHE_NAME = "Fealsi-Programacao-Central-de-Resumos";
+const CACHE_NAME = "fealsi-central-resumos-v2";
 
 const ARQUIVOS = [
   "./",
-  "./index.html"
+  "./index.html",
+  "./manifest.json",
+  "./icons/icon-192.png",
+  "./icons/icon-512.png"
 ];
 
 // Instala o Service Worker
